@@ -35,4 +35,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def getToken
+    #placeholders
+    code = ""
+    app_id = ""
+    app_secret = ""
+    response = Net::HTTP.post_form(URI.parse('http://developer.globelabs.com.ph/oauth/access_token'),
+        {'app_id'=>app_id, 'app_secret'=> app_secret, 'code' => code})
+    puts response.code
+    puts response.message
+    puts response.body
+    access_token = JSON.parse(response.body)['access_token']
+    msisdn = JSON.parse(response.body)['subscriber_number']
+    puts access_token
+    puts msisdn
+  end
+
 end
