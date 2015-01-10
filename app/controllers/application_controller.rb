@@ -51,4 +51,16 @@ class ApplicationController < ActionController::Base
     puts msisdn
   end
 
+  def sendSms
+    uri = URI.parse("http://devapi.globelabs.com.ph/smsmessaging/v1/outbound/<shortcode>/requests")
+    token = ""
+    uri.query = "access_token=#{token}"
+    message = "Test"
+    msisdn = ""
+    response = Net::HTTP.post_form(uri, {'address' => msisdn, 'message' => message})  
+    puts response.code
+    puts response.message
+    puts response.body
+  end
+
 end
