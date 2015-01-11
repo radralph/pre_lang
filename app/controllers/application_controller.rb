@@ -63,4 +63,9 @@ class ApplicationController < ActionController::Base
     puts response.body
   end
 
+  def getDetails(params)
+    logger.info params[:access_token]
+    logger.info params[:subscriber_number]
+  end
+
 end
